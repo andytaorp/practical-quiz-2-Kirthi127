@@ -5,23 +5,36 @@ import MovieList from "./MovieList";
 function App() {
   const [movies, setMovies] = useState([]);
 
-  const handleAddMovie = (title) => {
+  const onAddMovie = (newMovie) => {
     // TODO: Implement adding a new movie to the list
+    setMovies((prevMovies) => [...prevMovies, newMovie]);
   };
 
-  const handleToggleWatched = (id) => {
+  const onToggleWatched = (id) => {
     // TODO: Implement toggling a movie's watched status
+    setMovies((prevMovies) => {
+      prevMovies.map((movie) => 
+        movie.id === id ? { ...movie, watched: !movie.watched } : movie
+      )
+    });
   };
 
-  const handleDeleteMovie = (id) => {
+  const onDeleteMovie = (id) => {
     // TODO: Implement deleting a movie from the list
+    setMovies((prevMovies) => prevMovies.filter((movie) => movie.id !== id));
   };
 
   return (
     <div>
       <h1>Favorite Movies</h1>
       {/* TODO: Add AddMovieForm Component */}
+      <AddMovieForm onAddMovie={onAddMovie} />
       {/* TODO: Add MovieList Component */}
+      <MovieList
+        movies={movies}
+        onToggleWatched={onToggleWatched}
+        onDeleteMovie={onDeleteMovie}
+      />
     </div>
   );
 }
