@@ -2,10 +2,8 @@ import React, { useState } from "react";
 
 export default function AddMovieForm({ onAddMovie }) {
   const [title, setTitle] = useState("");
-  const [watch, setWatch] = useState("");
 
   const handleInputChange = (e) => {
-    setWatch(e.target.value);  
     setTitle(e.target.value);
   };
 
@@ -29,9 +27,9 @@ export default function AddMovieForm({ onAddMovie }) {
       <input
         type="text"
         placeholder="Movie Title"
-        name="watch"
-        id="watch"
-        value={watch}
+        name="title"
+        id="title"
+        value={title}
         onChange={handleInputChange}  
       />      
       <button type="submit">Add Movie</button>
