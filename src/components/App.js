@@ -11,11 +11,13 @@ function App() {
   };
 
   const onToggleWatched = (id) => {
-    // TODO: Implement toggling a movie's watched status
     setMovies((prevMovies) => {
-      prevMovies.map((movie) => 
-        movie.id === id ? { ...movie, watched: !movie.watched } : movie
-      )
+      if (Array.isArray(prevMovies)) {
+        return prevMovies.map((movie) =>
+          movie.id === id ? { ...movie, watched: !movie.watched } : movie
+        );
+      }
+      return prevMovies;
     });
   };
 
